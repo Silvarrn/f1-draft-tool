@@ -66,10 +66,8 @@ function buildTrackList() {
 
         label.className = "track";
 
-        label.innerHTML = `
-            <input type="checkbox" value="${track}">
-            ${track}
-        `;
+        label.textContent = track;
+        label.dataset.track = track;
 
         grid.appendChild(label);
     });

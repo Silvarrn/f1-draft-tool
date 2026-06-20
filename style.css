@@ -24,8 +24,30 @@ body {
 
 .track {
     background: #222;
-    padding: 10px;
-    border-radius: 8px;
+    border: 2px solid #333;
+    border-radius: 10px;
+
+    min-height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.track:hover {
+    border-color: #666;
+    transform: translateY(-2px);
+}
+
+.track.selected {
+    border-color: #e10600;
+    box-shadow: 0 0 12px rgba(225, 6, 0, 0.4);
 }
 
 button {

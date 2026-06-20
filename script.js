@@ -376,6 +376,29 @@ function generateSeason() {
     ) {
         season.push(shuffled.pop());
     }
+    const usedTrackCodes =
+    season.map(race => race.track);
+
+    const randomPool =
+    tracks.filter(track =>
+        !usedTrackCodes.includes(track.code)
+    );
+    const shuffledRandomPool =
+    shuffle(randomPool);
+    while (
+    season.length < 8 &&
+    shuffledRandomPool.length > 0
+    ) {
+
+    const randomTrack =
+        shuffledRandomPool.pop();
+
+    season.push({
+        track: randomTrack.code,
+        type: "random",
+        source: "🎲 Random Selection"
+    });
+    }
 
     season.sort((a, b) => {
     const aIndex =

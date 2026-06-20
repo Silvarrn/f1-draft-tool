@@ -12,61 +12,68 @@
 
     <h1>🏁 F1 Career Calendar Draft</h1>
 
-    <div id="nameScreen">
-        <h2>Players</h2>
+    <section id="setup-screen">
 
-        <input id="player1Name" placeholder="Player 1 Name">
-        <input id="player2Name" placeholder="Player 2 Name">
+        <h2>Driver Setup</h2>
+
+        <input
+            type="text"
+            id="player1-name"
+            placeholder="Player 1 Name">
+
+        <input
+            type="text"
+            id="player2-name"
+            placeholder="Player 2 Name">
 
         <button onclick="startDraft()">
             Start Draft
         </button>
-    </div>
 
-    <div id="draftScreen" class="hidden">
-        <h2 id="draftTitle"></h2>
+    </section>
 
-        <p>
-            Select exactly 5 tracks
-        </p>
+    <section id="draft-screen" class="hidden">
 
-        <p>
+        <h2 id="draft-title"></h2>
+
+        <p class="counter">
             Selected:
-            <span id="selectionCount">0</span>/5
+            <span id="selection-count">0</span>/5
         </p>
 
-        <div id="trackGrid" class="track-grid"></div>
+        <div id="track-grid" class="track-grid"></div>
 
         <button onclick="submitDraft()">
             Continue
         </button>
-    </div>
 
-    <div id="handoffScreen" class="hidden">
+    </section>
+
+    <section id="handoff-screen" class="hidden">
+
         <h2>Pass Device</h2>
 
-        <p>
-            Hand the device to the next player.
-        </p>
+        <p id="handoff-text"></p>
 
         <button onclick="beginPlayer2()">
-            Continue
+            Begin Draft
         </button>
-    </div>
 
-    <div id="resultScreen" class="hidden">
+    </section>
+
+    <section id="results-screen" class="hidden">
 
         <h2>Generated Season</h2>
 
         <div class="legend">
-            <div>🤝 Shared Pick</div>
-            <div>👤 Player 1 Pick</div>
-            <div>👤 Player 2 Pick</div>
+            <span>🤝 Shared Pick</span>
+            <span>👤 Player 1</span>
+            <span>👤 Player 2</span>
         </div>
 
         <div id="calendar"></div>
 
-        <div class="buttons">
+        <div class="button-row">
 
             <button onclick="generateSeason()">
                 🎲 Re-roll
@@ -78,7 +85,7 @@
 
         </div>
 
-    </div>
+    </section>
 
 </div>
 

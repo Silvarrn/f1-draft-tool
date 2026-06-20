@@ -36,67 +36,116 @@ let currentPlayer = 1;
 function startDraft() {
 
     player1 =
-        document.getElementById("player1Name").value || "Player 1";
+        document.getElementById("player1-name").value.trim()
+        || "Player 1";
 
     player2 =
-        document.getElementById("player2Name").value || "Player 2";
+        document.getElementById("player2-name").value.trim()
+        || "Player 2";
 
-    document.getElementById("nameScreen").classList.add("hidden");
-    document.getElementById("draftScreen").classList.remove("hidden");
+    document.getElementById("setup-screen")
+        .classList.add("hidden");
 
-    buildTrackList();
+    document.getElementById("draft-screen")
+        .classList.remove("hidden");
+
+    buildTrackGrid();
 }
 
-function buildTrackList() {
+function buildTrackGrid() {
 
-    document.getElementById("selectionCount").textContent = 0;
-
-    const grid = document.getElementById("trackGrid");
+    const grid =
+        document.getElementById("track-grid");
 
     grid.innerHTML = "";
 
-    document.getElementById("draftTitle").textContent =
-        currentPlayer === 1
-            ? `${player1}'s Picks`
-            : `${player2}'s Picks`;
+    document.getElementById("selection-count")
+        .textContent = "0";
+
+    document.getElementById("draft-title")
+        .textContent =
+            currentPlayer === 1
+            ? `${player1}'s Draft`
+            : `${player2}'s Draft`;
 
     tracks.forEach(track => {
 
-        const label = document.createElement("label");
+        const card =
+            document.createElement("div");
 
-        label.className = "track";
+        card.className = "track";
+        card.dataset.track = track;
 
-        label.innerHTML = `
-            <input type="checkbox" value="${track}">
-            ${track}
+        card.innerHTML = `
+            <div class="track-name">${track}</div>
         `;
 
-        grid.appendChild(label);
-    });
+        card.addEventListener("click", () => {
+            toggleTrack(card);
+        });
 
-    grid.addEventListener("change", updateCounter);
+        grid.appendChild(card);
+    });
 }
 
-function updateCounter() {
+function toggleTrack(card) {
 
-    const count =
-        document.querySelectorAll("#trackGrid input:checked").length;
+    const selected =
+        document.querySelectorAll(".track.selected");
 
-    document.getElementById("selectionCount").textContent = count;
-
-    if (count > 5) {
-        event.target.checked = false;
+    if (
+        !card.classList.contains("selected")
+        && selected.length >= 5
+    ) {
+        return;
     }
+
+    card.classList.toggle("selected");
+
+    updateSelectionDisplay();
+}
+
+function updateSelectionDisplay() {
+
+    const selected =
+        [...document.querySelectorAll(".track.selected")];
+
+    selected.forEach((card, index) => {
+
+        const existing =
+            card.querySelector(".pick-number");
+
+        if (existing) {
+            existing.remove();
+        }
+
+        const number =
+            document.createElement("div");
+
+        number.className = "pick-number";
+        number.textContent = index + 1;
+
+        card.prepend(number);
+    });
+
+    document
+        .querySelectorAll(".track:not(.selected) .pick-number")
+        .forEach(el => el.remove());
+
+    document.getElementById("selection-count")
+        .textContent = selected.length;
 }
 
 function submitDraft() {
 
     const selected =
-        [...document.querySelectorAll("#trackGrid input:checked")]
-            .map(x => x.value);
+        [...document.querySelectorAll(".track.selected")]
+        .map(card => card.dataset.track);
 
     if (selected.length !== 5) {
-        alert("Select exactly 5 tracks.");
+
+        alert("Please select exactly 5 tracks.");
+
         return;
     }
 
@@ -104,15 +153,25 @@ function submitDraft() {
 
         player1Picks = selected;
 
-        document.getElementById("draftScreen").classList.add("hidden");
-        document.getElementById("handoffScreen").classList.remove("hidden");
+        document.getElementById("draft-screen")
+            .classList.add("hidden");
+
+        document.getElementById("handoff-screen")
+            .classList.remove("hidden");
+
+        document.getElementById("handoff-text")
+            .textContent =
+            `Pass the device to ${player2}.`;
 
     } else {
 
         player2Picks = selected;
 
-        document.getElementById("draftScreen").classList.add("hidden");
-        document.getElementById("resultScreen").classList.remove("hidden");
+        document.getElementById("draft-screen")
+            .classList.add("hidden");
+
+        document.getElementById("results-screen")
+            .classList.remove("hidden");
 
         generateSeason();
     }
@@ -122,57 +181,89 @@ function beginPlayer2() {
 
     currentPlayer = 2;
 
-    document.getElementById("handoffScreen").classList.add("hidden");
-    document.getElementById("draftScreen").classList.remove("hidden");
+    document.getElementById("handoff-screen")
+        .classList.add("hidden");
 
-    buildTrackList();
+    document.getElementById("draft-screen")
+        .classList.remove("hidden");
+
+    buildTrackGrid();
 }
 
 function shuffle(array) {
 
-    return [...array]
-        .sort(() => Math.random() - 0.5);
+    const copy = [...array];
+
+    for (let i = copy.length - 1; i > 0; i--) {
+
+        const j =
+            Math.floor(Math.random() * (i + 1));
+
+        [copy[i], copy[j]] =
+            [copy[j], copy[i]];
+    }
+
+    return copy;
 }
 
 function generateSeason() {
 
     const shared =
-        player1Picks.filter(x => player2Picks.includes(x));
+        player1Picks.filter(track =>
+            player2Picks.includes(track));
+
+    const season = [];
+
+    shared.forEach(track => {
+
+        season.push({
+            track,
+            type: "shared",
+            source: "🤝 Both Players"
+        });
+
+    });
 
     const pool = [];
 
     player1Picks
-        .filter(x => !shared.includes(x))
-        .forEach(track =>
+        .filter(track => !shared.includes(track))
+        .forEach(track => {
+
             pool.push({
                 track,
                 type: "p1",
-                source: player1
-            }));
+                source: `👤 ${player1}`
+            });
+
+        });
 
     player2Picks
-        .filter(x => !shared.includes(x))
-        .forEach(track =>
+        .filter(track => !shared.includes(track))
+        .forEach(track => {
+
             pool.push({
                 track,
                 type: "p2",
-                source: player2
-            }));
+                source: `👤 ${player2}`
+            });
 
-    const season = shared.map(track => ({
-        track,
-        type: "shared",
-        source: "Both Players"
-    }));
+        });
 
-    shuffle(pool)
-        .slice(0, 8 - season.length)
-        .forEach(x => season.push(x));
+    const shuffled =
+        shuffle(pool);
+
+    while (
+        season.length < 8 &&
+        shuffled.length > 0
+    ) {
+        season.push(shuffled.pop());
+    }
 
     season.sort(
-        (a,b) =>
-        tracks.indexOf(a.track) -
-        tracks.indexOf(b.track)
+        (a, b) =>
+        tracks.indexOf(a.track)
+        - tracks.indexOf(b.track)
     );
 
     const calendar =
@@ -180,12 +271,14 @@ function generateSeason() {
 
     calendar.innerHTML = "";
 
-    season.forEach((race,index) => {
+    season.forEach((race, index) => {
 
         calendar.innerHTML += `
             <div class="race ${race.type}">
-                <strong>Round ${index+1}</strong><br>
-                ${race.track}<br>
+                <strong>Round ${index + 1}</strong>
+                <br>
+                ${race.track}
+                <br>
                 <small>${race.source}</small>
             </div>
         `;

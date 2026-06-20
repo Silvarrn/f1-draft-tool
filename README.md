@@ -1,6 +1,7 @@
 # F1 Career Calendar Draft
 
-A lightweight web app for creating shortened F1 Career Mode calendars with friends.
+A lightweight web app for creating shortened F1 Career Mode calendars with friends. Because I'm lazy and was playing whilst this idea came to mind, this is all AI generated so don't expect anything special.
+
 
 ## How it works
 

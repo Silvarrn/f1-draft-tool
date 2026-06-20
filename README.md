@@ -8,26 +8,15 @@ A lightweight web app for creating shortened F1 Career Mode calendars with frien
 1. Player 1 selects 5 circuits.
 2. The device is handed to Player 2.
 3. Player 2 selects 5 circuits.
-4. Shared picks are automatically included.
-5. Remaining calendar slots are filled randomly from the remaining selections.
-6. The final calendar is sorted into official championship order.
+4. The system will then generate a 8 race season using the selected tracks that you can then setup within F1 2025 (Madring isn't here so 2026 can be done provided no one wants to race on that track.)
 
 ## Features
-
-* Blind track selection
-* Shared pick detection
-* Random calendar generation
-* Championship order sorting
-* Re-roll functionality
-* Mobile-friendly design
-
-## Hosting
-
-This project is designed to be hosted via GitHub Pages.
+* Shared picks are automatically included.
+* Remaining calendar slots are filled randomly from the remaining selections.
+* The final calendar is sorted into official championship order.
+* It's possible to re-roll as well in case it picks a track that both players decide they don't want to do.
 
 ## Future Ideas
-
-* Support for custom tracks
 * Adjustable season lengths
 * Export calendar as image
 * Draft statistics

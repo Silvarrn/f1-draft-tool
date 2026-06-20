@@ -1,29 +1,144 @@
 const tracks = [
-    "Australia",
-    "China",
-    "Japan",
-    "Bahrain",
-    "Saudi Arabia",
-    "Miami",
-    "Emilia Romagna",
-    "Monaco",
-    "Spain",
-    "Canada",
-    "Austria",
-    "Great Britain",
-    "Belgium",
-    "Hungary",
-    "Netherlands",
-    "Italy",
-    "Azerbaijan",
-    "Singapore",
-    "United States",
-    "Mexico",
-    "Brazil",
-    "Las Vegas",
-    "Qatar",
-    "Abu Dhabi"
+    {
+        code: "AUS",
+        grandPrix: "Australian Grand Prix",
+        circuit: "Albert Park"
+    },
+    {
+        code: "CHN",
+        grandPrix: "Chinese Grand Prix",
+        circuit: "Shanghai International Circuit"
+    },
+    {
+        code: "JPN",
+        grandPrix: "Japanese Grand Prix",
+        circuit: "Suzuka"
+    },
+    {
+        code: "BHR",
+        grandPrix: "Bahrain Grand Prix",
+        circuit: "Bahrain International Circuit"
+    },
+    {
+        code: "SAU",
+        grandPrix: "Saudi Arabian Grand Prix",
+        circuit: "Jeddah Corniche Circuit"
+    },
+    {
+        code: "MIA",
+        grandPrix: "Miami Grand Prix",
+        circuit: "Miami International Autodrome"
+    },
+    {
+        code: "EMI",
+        grandPrix: "Emilia Romagna Grand Prix",
+        circuit: "Imola"
+    },
+    {
+        code: "MON",
+        grandPrix: "Monaco Grand Prix",
+        circuit: "Circuit de Monaco"
+    },
+    {
+        code: "ESP",
+        grandPrix: "Spanish Grand Prix",
+        circuit: "Circuit de Barcelona-Catalunya"
+    },
+    {
+        code: "CAN",
+        grandPrix: "Canadian Grand Prix",
+        circuit: "Circuit Gilles Villeneuve"
+    },
+    {
+        code: "AUT",
+        grandPrix: "Austrian Grand Prix",
+        circuit: "Red Bull Ring"
+    },
+    {
+        code: "AUT-R",
+        grandPrix: "Austrian Grand Prix",
+        circuit: "Red Bull Ring Reverse"
+    },
+    {
+        code: "GBR",
+        grandPrix: "British Grand Prix",
+        circuit: "Silverstone"
+    },
+    {
+        code: "GBR-R",
+        grandPrix: "British Grand Prix",
+        circuit: "Silverstone Reverse"
+    },
+    {
+        code: "BEL",
+        grandPrix: "Belgian Grand Prix",
+        circuit: "Spa-Francorchamps"
+    },
+    {
+        code: "HUN",
+        grandPrix: "Hungarian Grand Prix",
+        circuit: "Hungaroring"
+    },
+    {
+        code: "NED",
+        grandPrix: "Dutch Grand Prix",
+        circuit: "Zandvoort"
+    },
+    {
+        code: "NED-R",
+        grandPrix: "Dutch Grand Prix",
+        circuit: "Zandvoort Reverse"
+    },
+    {
+        code: "ITA",
+        grandPrix: "Italian Grand Prix",
+        circuit: "Monza"
+    },
+    {
+        code: "AZE",
+        grandPrix: "Azerbaijan Grand Prix",
+        circuit: "Baku City Circuit"
+    },
+    {
+        code: "SGP",
+        grandPrix: "Singapore Grand Prix",
+        circuit: "Marina Bay"
+    },
+    {
+        code: "USA",
+        grandPrix: "United States Grand Prix",
+        circuit: "Circuit of the Americas"
+    },
+    {
+        code: "MEX",
+        grandPrix: "Mexico City Grand Prix",
+        circuit: "Autódromo Hermanos Rodríguez"
+    },
+    {
+        code: "BRA",
+        grandPrix: "São Paulo Grand Prix",
+        circuit: "Interlagos"
+    },
+    {
+        code: "LVG",
+        grandPrix: "Las Vegas Grand Prix",
+        circuit: "Las Vegas Strip Circuit"
+    },
+    {
+        code: "QAT",
+        grandPrix: "Qatar Grand Prix",
+        circuit: "Lusail"
+    },
+    {
+        code: "ABD",
+        grandPrix: "Abu Dhabi Grand Prix",
+        circuit: "Yas Marina"
+    }
 ];
+
+function getTrack(code) {
+    return tracks.find(track => track.code === code);
+}
 
 let player1 = "Player 1";
 let player2 = "Player 2";
@@ -74,10 +189,12 @@ function buildTrackGrid() {
             document.createElement("div");
 
         card.className = "track";
-        card.dataset.track = track;
+        card.dataset.track = track.code;
 
         card.innerHTML = `
-            <div class="track-name">${track}</div>
+        <div class="track-code">${track.code}</div>
+        <div class="track-gp">${track.grandPrix}</div>
+        <div class="track-circuit">${track.circuit}</div>
         `;
 
         card.addEventListener("click", () => {
@@ -260,11 +377,15 @@ function generateSeason() {
         season.push(shuffled.pop());
     }
 
-    season.sort(
-        (a, b) =>
-        tracks.indexOf(a.track)
-        - tracks.indexOf(b.track)
-    );
+    season.sort((a, b) => {
+    const aIndex =
+        tracks.findIndex(track => track.code === a.track);
+
+    const bIndex =
+        tracks.findIndex(track => track.code === b.track);
+
+    return aIndex - bIndex;
+    });
 
     const calendar =
         document.getElementById("calendar");
@@ -277,7 +398,9 @@ function generateSeason() {
             <div class="race ${race.type}">
                 <strong>Round ${index + 1}</strong>
                 <br>
-                ${race.track}
+                ${getTrack(race.track).circuit}
+                <br>
+                <small>${getTrack(race.track).grandPrix}</small>
                 <br>
                 <small>${race.source}</small>
             </div>

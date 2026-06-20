@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 20px;
 
-    background: #111;
+    background: #0a0a0a;
     color: white;
 
     font-family: Arial, sans-serif;
@@ -70,9 +70,9 @@ button:hover {
 }
 
 .track {
-    background: #222;
+    background: #181818;
 
-    border: 2px solid #333;
+    border: 2px solid #2a2a2a;
     border-radius: 10px;
 
     min-height: 80px;

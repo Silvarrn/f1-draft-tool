@@ -1,0 +1,71 @@
+body {
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.track-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.track {
+    background: #222;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+button {
+    background: #e10600;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: .9;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.race {
+    background: #222;
+    margin-bottom: 10px;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.shared {
+    border-left: 5px solid #00cc66;
+}
+
+.p1 {
+    border-left: 5px solid #007bff;
+}
+
+.p2 {
+    border-left: 5px solid #ff9900;
+}
+
+.legend {
+    margin-bottom: 20px;
+}

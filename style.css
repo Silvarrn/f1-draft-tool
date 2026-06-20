@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap');
+
 body {
     margin: 0;
     padding: 20px;
 
-    background: #0a0a0a;
+    background: #15151e;
     color: white;
 
-    font-family: Arial, sans-serif;
+    font-family: 'Titillium Web', sans-serif;
 }
 
 .container {
@@ -17,7 +19,10 @@ body {
     display: none;
 }
 
-h1,
+h1 {
+    border-top: 4px solid #e10600;
+    padding-top: 15px;
+}
 h2 {
     text-align: center;
 }
@@ -89,9 +94,13 @@ button:hover {
 
     text-align: center;
 }
-
+.track-code {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
 .track:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     border-color: #666;
 }
 

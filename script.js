@@ -192,9 +192,8 @@ function buildTrackGrid() {
         card.dataset.track = track.code;
 
         card.innerHTML = `
-        <div class="track-code">${track.code}</div>
-        <div class="track-gp">${track.grandPrix}</div>
-        <div class="track-circuit">${track.circuit}</div>
+        <div class="track-main">${track.circuit}</div>
+        <div class="track-sub">${track.grandPrix}</div>
         `;
 
         card.addEventListener("click", () => {
@@ -396,7 +395,7 @@ function generateSeason() {
     season.push({
         track: randomTrack.code,
         type: "random",
-        source: "🎲 Random Selection"
+        source: "🎲 FIA Selection"
     });
     }
 

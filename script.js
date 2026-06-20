@@ -65,17 +65,30 @@ function buildTrackList() {
         const label = document.createElement("label");
 
         label.className = "track";
+        label.addEventListener("click", () => {
 
+    const selected =
+        document.querySelectorAll(".track.selected");
+
+    if (
+        !label.classList.contains("selected") &&
+        selected.length >= 5
+    ) {
+        return;
+    }
+
+    label.classList.toggle("selected");
+
+    document.getElementById("selectionCount").textContent =
+        document.querySelectorAll(".track.selected").length;
+});
         label.textContent = track;
         label.dataset.track = track;
 
         grid.appendChild(label);
     });
 
-    grid.addEventListener("change", updateCounter);
 }
-
-function updateCounter() {
 
     const count =
         document.querySelectorAll("#trackGrid input:checked").length;
@@ -89,9 +102,9 @@ function updateCounter() {
 
 function submitDraft() {
 
-    const selected =
-        [...document.querySelectorAll("#trackGrid input:checked")]
-            .map(x => x.value);
+const selected =
+    [...document.querySelectorAll(".track.selected")]
+        .map(x => x.dataset.track);
 
     if (selected.length !== 5) {
         alert("Select exactly 5 tracks.");

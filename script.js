@@ -142,7 +142,8 @@ function getTrack(code) {
 
 let player1 = "Player 1";
 let player2 = "Player 2";
-
+let seasonLength = 10;
+let picksPerPlayer = 6;
 let player1Picks = [];
 let player2Picks = [];
 
@@ -157,6 +158,16 @@ function startDraft() {
     player2 =
         document.getElementById("player2-name").value.trim()
         || "Player 2";
+
+        const selectedLength =
+        document.querySelector(
+        'input[name="season-length"]:checked'
+        ).value;
+
+        seasonLength = Number(selectedLength);
+
+        picksPerPlayer =
+        seasonLength === 10 ? 6 : 9;
 
     document.getElementById("setup-screen")
         .classList.add("hidden");
@@ -174,6 +185,8 @@ function buildTrackGrid() {
 
     grid.innerHTML = "";
 
+    document.getElementById("selection-limit").textContent =
+    picksPerPlayer;
     document.getElementById("selection-count")
         .textContent = "0";
 
@@ -211,7 +224,7 @@ function toggleTrack(card) {
 
     if (
         !card.classList.contains("selected")
-        && selected.length >= 5
+        && selected.length >= picksPerPlayer
     ) {
         return;
     }
@@ -258,9 +271,9 @@ function submitDraft() {
         [...document.querySelectorAll(".track.selected")]
         .map(card => card.dataset.track);
 
-    if (selected.length !== 5) {
+    if (selected.length !== picksPerPlayer) {
 
-        alert("Please select exactly 5 tracks.");
+        alert("Please select exactly" + picksPerPlayer "tracks.");
 
         return;
     }
@@ -370,7 +383,7 @@ function generateSeason() {
         shuffle(pool);
 
     while (
-        season.length < 8 &&
+        season.length < seasonLength &&
         shuffled.length > 0
     ) {
         season.push(shuffled.pop());
@@ -385,7 +398,7 @@ function generateSeason() {
     const shuffledRandomPool =
     shuffle(randomPool);
     while (
-    season.length < 8 &&
+    season.length < seasonLength &&
     shuffledRandomPool.length > 0
     ) {
 

@@ -273,7 +273,7 @@ function submitDraft() {
 
     if (selected.length !== picksPerPlayer) {
 
-        alert("Please select exactly" + picksPerPlayer "tracks.");
+        alert("Please select exactly" + picksPerPlayer + "tracks.");
 
         return;
     }

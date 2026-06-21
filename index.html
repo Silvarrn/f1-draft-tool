@@ -27,22 +27,39 @@
             placeholder="Player 2 Name">
 
 
-        <label>
-        <input
-             type="radio"
-               name="season-length"
-                value="10"
-                checked>
-         10 Race Season
-        </label>
+<div class="season-selector">
 
-        <label>
-          <input
-            type="radio"
-             name="season-length"
-             value="16">
-         16 Race Season
-        </label>
+    <div
+        class="season-card selected"
+        data-length="10"
+        onclick="selectSeason(10, this)">
+
+        <div class="season-title">
+            10 Race Season
+        </div>
+
+        <div class="season-subtitle">
+            Quick Championship
+        </div>
+
+    </div>
+
+    <div
+        class="season-card"
+        data-length="16"
+        onclick="selectSeason(16, this)">
+
+        <div class="season-title">
+            16 Race Season
+        </div>
+
+        <div class="season-subtitle">
+            Extended Campaign
+        </div>
+
+    </div>
+
+</div>
             
         <button onclick="startDraft()">
             Start Draft

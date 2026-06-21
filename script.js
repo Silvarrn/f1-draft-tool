@@ -159,16 +159,6 @@ function startDraft() {
         document.getElementById("player2-name").value.trim()
         || "Player 2";
 
-        const selectedLength =
-        document.querySelector(
-        'input[name="season-length"]:checked'
-        ).value;
-
-        seasonLength = Number(selectedLength);
-
-        picksPerPlayer =
-        seasonLength === 10 ? 6 : 9;
-
     document.getElementById("setup-screen")
         .classList.add("hidden");
 

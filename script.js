@@ -149,6 +149,26 @@ let player2Picks = [];
 
 let currentPlayer = 1;
 
+function selectSeason(length, element) {
+
+    seasonLength = length;
+
+    document.getElementById("season-info").textContent =
+    length === 10
+        ? "6 picks per driver"
+        : "9 picks per driver";
+
+    picksPerPlayer =
+        length === 10 ? 6 : 9;
+
+    document
+        .querySelectorAll(".season-card")
+        .forEach(card =>
+            card.classList.remove("selected"));
+
+    element.classList.add("selected");
+}
+
 function startDraft() {
 
     player1 =

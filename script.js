@@ -57,7 +57,7 @@ const tracks = [
     {
         code: "AUT-R",
         grandPrix: "Austrian Grand Prix",
-        circuit: "Red Bull Ring Reverse"
+        circuit: "Red Bull Ring (R)"
     },
     {
         code: "GBR",
@@ -67,7 +67,7 @@ const tracks = [
     {
         code: "GBR-R",
         grandPrix: "British Grand Prix",
-        circuit: "Silverstone Reverse"
+        circuit: "Silverstone (R)"
     },
     {
         code: "BEL",
@@ -87,7 +87,7 @@ const tracks = [
     {
         code: "NED-R",
         grandPrix: "Dutch Grand Prix",
-        circuit: "Zandvoort Reverse"
+        circuit: "Zandvoort (R)"
     },
     {
         code: "ITA",

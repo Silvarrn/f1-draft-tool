@@ -149,6 +149,17 @@ let player2Picks = [];
 
 let currentPlayer = 1;
 
+function initSeasonUI() {
+
+    const defaultCard =
+        document.querySelector('.season-card[data-length="10"]');
+
+    if (defaultCard) {
+        selectSeason(10, defaultCard);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", initSeasonUI);
 function selectSeason(length, element) {
 
     seasonLength = length;

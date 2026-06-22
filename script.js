@@ -173,10 +173,14 @@ function selectSeason(length, element) {
 
     seasonLength = length;
 
-    document.getElementById("season-info").textContent =
-    length === 10
-        ? "6 picks per driver"
-        : "9 picks per driver";
+const seasonInfo =
+    document.getElementById("season-info");
+
+if (seasonInfo) {
+    seasonInfo.textContent =
+        length === 10
+            ? "6 picks per driver"
+            : "9 picks per driver";
 
     picksPerPlayer =
         length === 10 ? 6 : 9;

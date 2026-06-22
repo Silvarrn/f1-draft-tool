@@ -44,7 +44,12 @@ input {
     gap: 15px;
     margin-bottom: 25px;
 }
-
+#season-info {
+    text-align: center;
+    margin-top: 10px;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
 .season-card {
     flex: 1;
 

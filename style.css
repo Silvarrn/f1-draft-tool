@@ -113,7 +113,7 @@ button:hover {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fill, minmax(180px, 1fr));
+        repeat(auto-fill, minmax(340px, 1fr));
 
     gap: 12px;
 
@@ -124,7 +124,6 @@ button:hover {
     position: relative;
     padding: 14px 40px 14px 40px;
     border: 2px solid #2a2a2a;
-    box-sizing: border-box;
     border-radius: 10px;
 
     min-height: 80px;

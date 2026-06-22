@@ -226,7 +226,6 @@ function buildTrackGrid() {
         card.dataset.track = track.code;
 
         card.innerHTML = `
-            <div class="pick-number"></div>
            <div class="track-main">${track.circuit}</div>
            <div class="track-sub">${track.grandPrix}</div>
         `;
@@ -257,31 +256,18 @@ function toggleTrack(card) {
 }
 
 function updateSelectionDisplay() {
-
     const selected =
         [...document.querySelectorAll(".track.selected")];
 
+    // remove all existing numbers first (clean slate approach)
+    document.querySelectorAll(".pick-number").forEach(el => el.remove());
+
     selected.forEach((card, index) => {
-
-        const existing =
-            card.querySelector(".pick-number");
-
-        if (existing) {
-            existing.remove();
-        }
-
-        const number =
-            document.createElement("div");
-
+        const number = document.createElement("div");
         number.className = "pick-number";
         number.textContent = index + 1;
-
         card.prepend(number);
     });
-
-    document
-        .querySelectorAll(".track:not(.selected) .pick-number")
-        .forEach(el => el.remove());
 
     document.getElementById("selection-count")
         .textContent = selected.length;

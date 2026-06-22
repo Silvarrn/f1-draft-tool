@@ -112,9 +112,7 @@ button:hover {
 .track-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(auto-fill, minmax(340px, 1fr));
-
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 12px;
 
     margin: 25px 0;
@@ -127,7 +125,6 @@ button:hover {
     border-radius: 10px;
 
     min-height: 80px;
-    min-width: 340px;
 
     display: flex;
     flex-direction: column;

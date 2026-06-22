@@ -159,16 +159,6 @@ function initSeasonUI() {
     }
 }
 
-/* document.addEventListener("DOMContentLoaded", initSeasonUI);
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".season-card").forEach(card => {
-        card.addEventListener("click", () => {
-            const length = parseInt(card.dataset.length, 10);
-            selectSeason(length, card);
-        });
-    });
-}); */
-
 function selectSeason(length, element) {
 
     seasonLength = length;

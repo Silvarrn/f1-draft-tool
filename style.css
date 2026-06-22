@@ -121,8 +121,9 @@ button:hover {
 }
 .track {
     background: #181818;
-
+    position: relative;
     border: 2px solid #2a2a2a;
+    box-sizing: border-box;
     border-radius: 10px;
 
     min-height: 80px;
@@ -169,18 +170,33 @@ button:hover {
     border-color: #666;
 }
 .track.selected {
+    border: 2px solid;
     border-color: #e10600;
     box-shadow: 0 0 15px rgba(225, 6, 0, 0.5);
 }
 
 
 .pick-number {
-    font-size: 1.2rem;
-    font-weight: bold;
+    position: absolute;
+    top: 8px;
+    left: 8px;
 
-    color: #e10600;
+    width: 22px;
+    height: 22px;
 
-    margin-bottom: 5px;
+    border-radius: 4px;
+
+    background: #e10600;
+    color: white;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: none;
 }
 
 .legend {

@@ -215,8 +215,9 @@ function buildTrackGrid() {
         card.dataset.track = track.code;
 
         card.innerHTML = `
-        <div class="track-main">${track.circuit}</div>
-        <div class="track-sub">${track.grandPrix}</div>
+            <div class="pick-number"></div>
+           <div class="track-main">${track.circuit}</div>
+           <div class="track-sub">${track.grandPrix}</div>
         `;
 
         card.addEventListener("click", () => {

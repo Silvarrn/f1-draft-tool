@@ -122,12 +122,13 @@ button:hover {
 .track {
     background: #181818;
     position: relative;
-    padding: 14px 14px 14px 40px;
+    padding: 14px 40px 14px 40px;
     border: 2px solid #2a2a2a;
     box-sizing: border-box;
     border-radius: 10px;
 
     min-height: 80px;
+    min-width: 340px;
 
     display: flex;
     flex-direction: column;

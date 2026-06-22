@@ -173,20 +173,26 @@ function selectSeason(length, element) {
 
     seasonLength = length;
 
-    document.getElementById("season-info").textContent =
-    length === 10
-        ? "6 picks per driver"
-        : "9 picks per driver";
-
     picksPerPlayer =
         length === 10 ? 6 : 9;
 
-    document
-        .querySelectorAll(".season-card")
-        .forEach(card =>
-            card.classList.remove("selected"));
+    document.getElementById("season-info").textContent =
+        length === 10
+            ? "6 picks per driver"
+            : "9 picks per driver";
+
+    document.querySelectorAll(".season-card")
+        .forEach(card => card.classList.remove("selected"));
 
     element.classList.add("selected");
+
+    if (!document.getElementById("draft-screen").classList.contains("hidden")) {
+        buildTrackGrid();
+    }
+    document.getElementById("selection-limit").textContent =
+    length === 10 ? 6 : 9;
+
+    document.getElementById("selection-count").textContent = "0";
 }
 
 function startDraft() {
@@ -216,7 +222,7 @@ function buildTrackGrid() {
     grid.innerHTML = "";
 
     document.getElementById("selection-limit").textContent =
-    picksPerPlayer;
+    stateBasedPickLimit();
     document.getElementById("selection-count")
         .textContent = "0";
 
@@ -245,6 +251,8 @@ function buildTrackGrid() {
 
         grid.appendChild(card);
     });
+
+    
 }
 
 function toggleTrack(card) {
